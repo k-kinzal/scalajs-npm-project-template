@@ -1,0 +1,27 @@
+{
+  "name": "scalajs-npm-project-template",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "mkdir -p .tmp dist",
+    "clean": "rm -rf .tmp dist",
+    "build": "npm run prepare && scalajsc -classpath $(find ~/.m2 -path '*scala-library*' -prune -o -path '*scalajs-library*' -prune -o -name '*.jar' -print | paste -s -d ':' -):$(find ./node_modules/scalajs-standalone-bin -name '*.jar' | paste -s -d ':' -) $(find src -name '*.scala') -d .tmp  && scalajsld -o dist/example.js .tmp",
+    "postinstall": "node-java-maven"
+  },
+  "author": "k-kinzal",
+  "license": "MIT",
+  "devDependencies": {
+    "node-java-maven": "0.0.12",
+    "scalajs-standalone-bin": "^0.4.3"
+  },
+  "java": {
+    "dependencies": [
+      {
+        "groupId": "org.scala-js",
+        "artifactId": "scalajs-dom_sjs0.6_2.11",
+        "version": "0.8.2"
+      }
+    ]
+  }
+}
